@@ -6,7 +6,7 @@ const chokidar = require('chokidar');
 const { get } = require('http');
 
 const app = express();
-const port = 3000;
+const port = 3000 || process.env.port;
 
 const http = require("http").createServer(app);
 app.use(bodyParser.urlencoded({ extended: true })); 
