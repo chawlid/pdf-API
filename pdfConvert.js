@@ -4,13 +4,15 @@ const path = require('path');
 const cheerio = require('cheerio');
 const fs = require('node:fs');
 const axios = require('axios');
+const uploadFile = require('./cloudinary');
 
-async function convertUrlToPdf(url,idFile) {
+
+async function convertUrlToPdf(url,idFile, res) {
 
   console.log(url);
   console.log(idFile);
   
-  createFile(idFile);
+ // createFile(idFile);
   //loadPage(url,idFile);
 
   
@@ -30,7 +32,7 @@ async function convertUrlToPdf(url,idFile) {
 
    // const pageTitle = await page.title();
     
-   const pageTitle =await getTitle(url);
+   //const pageTitle =await getTitle(url);
     
 
    const newBody=await loadPage(url);
@@ -48,17 +50,20 @@ async function convertUrlToPdf(url,idFile) {
   // Downlaod the PDF
   
     const pdf = await page.pdf({
-      path: `save/${idFile}/pdf_${idFile}.pdf`,
+     // path: `save/${idFile}/pdf_${idFile}.pdf`,
       margin: { top: '100px', right: '50px', bottom: '100px', left: '50px' },
       printBackground: true,
       format: 'A4',
     });
-  
+
+    var fileName=`pdf_${idFile}`;
+    uploadFile.uploadCloud(pdf,fileName,res);
+ 
     // Close the browser instance
     await browser.close();
 
 }
-
+////////////////////////////////////////////
 async function loadPage(url) {
 
   const response = await axios.get(url)
@@ -69,7 +74,7 @@ async function loadPage(url) {
 
 }
 
-async function getTitle(url){
+/*async function getTitle(url){
 
   const { data } = await axios.get(url);
 
@@ -81,16 +86,7 @@ async function getTitle(url){
  return title;
 }
 
+*/
 
-function createFile(idFile) {
-  const folderName = `save/${idFile}`;
-try {
-  if (!fs.existsSync(folderName)) {
-    fs.mkdirSync(folderName);
-  }
-} catch (err) {
-  console.error(err);
-}
-}
 
 exports.convertUrlToPdf=convertUrlToPdf;
