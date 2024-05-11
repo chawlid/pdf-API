@@ -2,7 +2,7 @@
 const cloudinary = require('cloudinary').v2
 const streamifier = require('streamifier');
 const fs = require('node:fs');
-const server=require('./server');
+const server=require('.');
 cloudinary.config({ 
     cloud_name: 'dpckpvwza', 
     api_key: '174477339252399', 
