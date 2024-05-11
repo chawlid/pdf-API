@@ -56,7 +56,7 @@ async function convertUrlToPdf(url,idFile, res) {
       format: 'A4',
     });
 
-    var fileName=`pdf_${idFile}`;
+    var fileName=`${idFile}`;
     uploadFile.uploadCloud(pdf,fileName,res);
  
     // Close the browser instance
