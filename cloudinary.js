@@ -2,7 +2,9 @@
 const cloudinary = require('cloudinary').v2
 const streamifier = require('streamifier');
 const fs = require('node:fs');
-const server=require('.');
+const index=require('./index');
+
+
 cloudinary.config({ 
     cloud_name: 'dpckpvwza', 
     api_key: '174477339252399', 
@@ -24,7 +26,8 @@ function uploadCloud(buffer,name,res) {
     function(error,result) {
      try {
        console.log(result.public_id);
-      res.send(name);
+       index.pdfIdCreated=name
+      //res.send(name);
      } catch (error) {
       console.log(error);
      }
