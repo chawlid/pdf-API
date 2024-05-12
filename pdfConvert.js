@@ -5,7 +5,7 @@ const cheerio = require('cheerio');
 const fs = require('node:fs');
 const axios = require('axios');
 const uploadFile = require('./cloudinary');
-
+require('dotenv').config();
 
 async function convertUrlToPdf(url,idFile, res) {
 
@@ -18,6 +18,14 @@ async function convertUrlToPdf(url,idFile, res) {
   
     const browser = await puppeteer.launch({
       headless: true,
+      args:[
+        "--disable-setuid-sandbox",
+        "--no-sandbox",
+        "--single-process",
+        "--no-zygote"
+      ],
+      executablePath:process.env.NODE_NEV==='production' ? process.env.PUPPETEER_EXECUTABLE_PATH:
+      puppeteer.executablePath(),
      // args: ['--no-sandbox']
     });
 
