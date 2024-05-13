@@ -16,9 +16,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get('/', (req, res) => res.send(' Is Connecting!'));
 
-let pdfIdCreated='0';
+global.pdfIdCreated='0';
 
-app.get('/api/pdfconvert', (req, res) => res.send(pdfIdCreated));
+app.get('/api/pdfconvert', (req, res) => res.send(global.pdfIdCreated));
 
 app.post('/api/pdfconvert',  function (req, res) {
   let  url=req.body.url;

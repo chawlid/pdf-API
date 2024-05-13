@@ -2,7 +2,7 @@
 const cloudinary = require('cloudinary').v2
 const streamifier = require('streamifier');
 const fs = require('node:fs');
-const index=require('./index');
+
 
 
 cloudinary.config({ 
@@ -26,7 +26,7 @@ function uploadCloud(buffer,name,res) {
     function(error,result) {
      try {
        console.log(result.public_id);
-       index.pdfIdCreated=name
+       global.pdfIdCreated=name;
       //res.send(name);
      } catch (error) {
       console.log(error);
