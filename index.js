@@ -42,8 +42,10 @@ app.post('/api/pdfconvert',  function (req, res) {
 })
 
 app.get('/api/download/:id', function (req, res) {
-  console.log(req.params.id);
-  res.download(`${__dirname}/save/${req.params.id}/pdf_${req.params.id}.pdf`);
+  location.href=`https://res.cloudinary.com/dpckpvwza/image/upload/save/${req.params.id}.pdf`;
+ // console.log(req.params.id);
+  //res.download(`${__dirname}/save/${req.params.id}/pdf_${req.params.id}.pdf`);
+
 })
 
 app.get('/api/delete/:id', (req, res) => {
