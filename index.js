@@ -2,42 +2,37 @@ const express = require('express')
 const bodyParser = require('body-parser');
 const fs = require("fs");
 const pdf=require('./pdfConvert');
-const chokidar = require('chokidar');
-const { get } = require('http');
+//const chokidar = require('chokidar');
+//const { get } = require('http');
 
 
 
 const app = express();
 const port = 3000 || process.env.port;
 
-const http = require("http").createServer(app);
+require("http").createServer(app);
 app.use(bodyParser.urlencoded({ extended: true })); 
 
 
 app.get('/', (req, res) => res.send(' Is Connecting!'));
 
-global.pdfIdCreated='0';
+//global.pdfIdCreated='0';
 
-app.get('/api/pdfconvert', (req, res) => res.send(global.pdfIdCreated));
+//app.get('/api/pdfconvert', (req, res) => res.send(global.pdfIdCreated));
 
-app.post('/api/pdfconvert',  function (req, res) {
+app.post('/api/pdfconvert/',  function (req, res) {
+  
   let  url=req.body.url;
   let  idFile=req.body.idFile;
   
+ 
 
-  pdf.convertUrlToPdf(url,idFile , res)
+   pdf.convertUrlToPdf(url,idFile , res)
   .then(()=>console.log('Pdf Created with success'))
   .catch(err=>console.error('Error:',err));
-  
 
-  /*var watcher = chokidar.watch(`./save/${idFile}/pdf_${idFile}.pdf`, {ignored: /^\./, persistent: true});
-  watcher.once('add', async function() {
- // await new Promise(resolve => setTimeout(resolve, 1000));
-    pdfIdCreated=idFile;
-   // res.send(pdfIdCreated);
-    console.log('The ID is sended');
-});*/
-  
+
+
 
 })
 

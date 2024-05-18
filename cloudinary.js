@@ -26,7 +26,7 @@ function uploadCloud(buffer,name,res) {
     function(error,result) {
      try {
        console.log(result.public_id);
-       global.pdfIdCreated=name;
+       res.send(name);
       //res.send(name);
      } catch (error) {
       console.log(error);
