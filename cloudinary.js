@@ -27,7 +27,7 @@ function uploadCloud(buffer,name,res) {
      try {
        console.log(result.public_id);
        res.send(name);
-      //res.send(name);
+     
      } catch (error) {
       console.log(error);
      }

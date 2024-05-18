@@ -16,9 +16,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get('/', (req, res) => res.send(' Is Connecting!'));
 
-//global.pdfIdCreated='0';
 
-//app.get('/api/pdfconvert', (req, res) => res.send(global.pdfIdCreated));
 
 app.post('/api/pdfconvert/',  function (req, res) {
   
@@ -53,4 +51,3 @@ app.get('/api/delete/:id', (req, res) => {
 app.listen(port, () => console.log(` App listening on port ${port}!`));
 
 
-exports.pdfIdCreated=pdfIdCreated;
