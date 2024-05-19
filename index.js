@@ -17,8 +17,11 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.get('/', (req, res) => res.send(' Is Connecting!'));
 
 
+app.get('/api/pdfconvert/:url/:idFile',  function (req, res) {
+console.log(req.params.idFile+'  => '+req.params.url);
+});
 
-app.post('/api/pdfconvert/',  function (req, res) {
+app.post('/api/pdfconvert/:',  function (req, res) {
   
   let  url=req.body.url;
   let  idFile=req.body.idFile;
