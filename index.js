@@ -26,7 +26,7 @@ app.post('/api/pdfconvert/',  function (req, res) {
   let  url=req.body.url;
   let  idFile=req.body.idFile;
   
- 
+ console.log(idFile);
 
    pdf.convertUrlToPdf(url,idFile , res)
   .then(()=>console.log('Pdf Created with success'))
